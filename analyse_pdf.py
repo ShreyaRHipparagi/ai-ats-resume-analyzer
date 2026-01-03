@@ -52,7 +52,7 @@ def analyse_resume_gemini(resume_content, job_description):
                 "experience_relevance": 0-100,
                 "formatting_quality": 0-100
             }},
-            "explanation": "Markdown formatted deep dive into metrics"
+            "explanation": "Markdown formatted deep dive into metrics. Use bolding and professional highlights."
         }},
         "market_intel": {{
             "salary_range_usd": "$120k - $150k",
@@ -77,22 +77,22 @@ def analyse_resume_gemini(resume_content, job_description):
         }},
         "recruiter_review": {{
             "decision": "Shortlisted" | "Rejected" | "Maybe",
-            "honest_feedback": "Brutally honest recruiter perspective",
+            "honest_feedback": "Brutally honest recruiter perspective, focused on career trajectory.",
             "critical_fail_points": ["Point 1", "Point 2"],
             "key_strengths": ["Strength 1", "Strength 2"]
         }},
         "resume_tailoring": {{
-            "new_summary": "Tailored professional summary",
+            "new_summary": "Tailored high-impact professional summary",
             "optimized_skills": ["Skill 1", "Skill 2"],
             "enhanced_bullets": [
                 {{
                     "original": "Old bullet point",
-                    "improved": "FAANG-level bullet point using Google's X-Y-Z formula.",
-                    "impact": "Explanation of the impact"
+                    "improved": "FAANG-level bullet point using Google's X-Y-Z formula: Accomplished [X] as measured by [Y], by doing [Z].",
+                    "impact": "Explanation of why this bullet wins"
                 }}
             ],
             "linkedin_tips": ["Tip 1", "Tip 2"],
-            "cover_letter": "A high-impact, professional cover letter (approx 300 words) tailored to the job description and candidate's strengths."
+            "cover_letter": "A high-impact, professional cover letter (approx 300 words) tailored to the job description."
         }},
         "skill_gap_analysis": {{
             "missing_technical_skills": ["Skill A"],
@@ -100,28 +100,35 @@ def analyse_resume_gemini(resume_content, job_description):
             "recommended_projects": [
                 {{
                     "title": "Project Name",
-                    "description": "How this fixes the gap",
+                    "description": "Comprehensive project description addressing the skill gap",
                     "tech_stack": ["Tech X"]
                 }}
             ],
-            "certifications": ["Cert 1"]
+            "certifications": ["Recommended Certification"]
         }},
         "interview_prep": {{
-            "technical_questions": ["Question 1"],
-            "behavioral_questions": ["Question 1"]
+            "technical_questions": ["Technical Question 1"],
+            "behavioral_questions": ["Behavioral Question 1"]
         }},
         "career_roadmap": {{
             "learning_plan_6_months": [
-                {{ "month": 1, "focus": "Description" }}
+                {{ "month": 1, "focus": "Month 1 detailed focus area" }},
+                {{ "month": 2, "focus": "Month 2 detailed focus area" }},
+                {{ "month": 3, "focus": "Month 3 detailed focus area" }},
+                {{ "month": 4, "focus": "Month 4 detailed focus area" }},
+                {{ "month": 5, "focus": "Month 5 detailed focus area" }},
+                {{ "month": 6, "focus": "Month 6 detailed focus area" }}
             ],
-            "final_advice": "Winning strategy"
+            "final_advice": "Elite winning strategy for long-term career growth."
         }}
     }}
 
-    IMPORTANT: Be realistic and critical. Use Markdown for formatting inside strings (bolding, etc.).
-    Ensure bullet points strictly follow the Google X-Y-Z formula: Accomplished [X] as measured by [Y], by doing [Z].
-    For salary ranges, provide the numerical range only.
-    Example: "salary_range_usd": "$70k - $100k", "salary_range_inr": "₹12L - ₹20L"
+    CRITICAL RULES:
+    1. EXCLUSIVITY: The 'learning_plan_6_months' array MUST contain exactly 6 entries (one for each month).
+    2. DEPTH: Do not provide one-word answers. Each 'focus' and 'explanation' must be content-rich.
+    3. FORMATTING: Use Markdown for formatting inside strings (bolding, italics, etc.).
+    4. X-Y-Z FORMULA: Bullet points MUST follow: Accomplished [X] as measured by [Y], by doing [Z].
+    5. REALISM: Salary ranges must be realistic benchmarks for the role and location.
     """
     
     try:
@@ -146,7 +153,7 @@ def analyse_resume_gemini(resume_content, job_description):
             "error": f"SYSTEM BREACH: Failed to parse AI response: {str(e)}",
             "diagnostics": {
                 "available_models": available_models,
-                "current_model": "gemini-1.5-flash"
+                "current_model": "gemini-2.5-flash-lite"
             },
             "raw": response.text if 'response' in locals() else "No response generated"
         }
