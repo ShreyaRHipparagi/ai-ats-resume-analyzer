@@ -11,7 +11,7 @@ genai.configure(api_key=api_key)
 
 # Using gemini-2.0-flash-lite for speed and reliability.
 model = genai.GenerativeModel(
-    model_name="gemini-2.0-flash-lite",
+    model_name="gemini-2.5-flash",
     generation_config={"response_mime_type": "application/json"}
 )
 
