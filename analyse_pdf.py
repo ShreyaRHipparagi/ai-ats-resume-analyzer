@@ -9,9 +9,9 @@ api_key = os.getenv("GEMINI_API_KEY")
 
 genai.configure(api_key=api_key)
 
-# Using gemini-2.0-flash-lite for speed and reliability.
+# Using gemini-1.5-flash for reliability and broad availability.
 model = genai.GenerativeModel(
-    model_name="gemini-2.5-flash",
+    model_name="gemini-2.5-flash-lite",
     generation_config={"response_mime_type": "application/json"}
 )
 
@@ -120,17 +120,25 @@ def analyse_resume_gemini(resume_content, job_description):
 
     IMPORTANT: Be realistic and critical. Use Markdown for formatting inside strings (bolding, etc.).
     Ensure bullet points strictly follow the Google X-Y-Z formula: Accomplished [X] as measured by [Y], by doing [Z].
+    For salary ranges, provide the numerical range only.
+    Example: "salary_range_usd": "$70k - $100k", "salary_range_inr": "₹12L - ₹20L"
     """
     
     try:
+        print(f"DEBUG: Invoking Gemini API with prompt (truncated): {prompt[:200]}...")
         response = model.generate_content(prompt)
+        print("DEBUG: Gemini API response received.")
+        
         # Parse the JSON to ensure it's valid before returning
         result = json.loads(response.text)
+        print("DEBUG: Successfully parsed JSON response.")
         return result
     except Exception as e:
+        print(f"ERROR: Gemini Processing Failed: {str(e)}")
         # Collect available models for diagnostics
         try:
             available_models = [m.name for m in genai.list_models()]
+            print(f"INFO: Available models: {available_models}")
         except:
             available_models = ["Unknown (API Error)"]
             
@@ -138,7 +146,7 @@ def analyse_resume_gemini(resume_content, job_description):
             "error": f"SYSTEM BREACH: Failed to parse AI response: {str(e)}",
             "diagnostics": {
                 "available_models": available_models,
-                "current_model": "gemini-2.0-flash-lite"
+                "current_model": "gemini-1.5-flash"
             },
             "raw": response.text if 'response' in locals() else "No response generated"
         }

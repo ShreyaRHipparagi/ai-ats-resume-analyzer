@@ -9,10 +9,12 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 
 def extract_text_from_resume(pdf_path):
+    print(f"DEBUG: Extracting text from PDF: {pdf_path}")
     doc = fitz.open(pdf_path)
     text = ""
     for page in doc:
         text += page.get_text()
+    print(f"DEBUG: Successfully extracted {len(text)} characters.")
     return text
 
 
@@ -23,11 +25,14 @@ def index():
         job_description = request.form["job_description"]
 
         if resume_file.filename.endswith(".pdf"):
+            print(f"DEBUG: Received file {resume_file.filename} and JD (length: {len(job_description)})")
             pdf_path = os.path.join(app.config['UPLOAD_FOLDER'], resume_file.filename)
             resume_file.save(pdf_path)
 
             resume_content = extract_text_from_resume(pdf_path)
+            print("DEBUG: Sending content to Gemini for analysis...")
             result = analyse_resume_gemini(resume_content, job_description)
+            print("DEBUG: Analysis complete.")
 
             return render_template("index.html", result=result, job_description=job_description)
 

@@ -42,7 +42,16 @@
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --card-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+
+            /* Neon Palette for Roadmap Tiers */
+            --neon-1: #00f2ff;
+            --neon-2: #7000ff;
+            --neon-3: #ff00c8;
+            --neon-4: #00ff88;
+            --neon-5: #ff8800;
+            --neon-6: #ffff00;
+            --neon-glow: 0 0 20px rgba(var(--primary-rgb), 0.3);
         }
 
         [data-bs-theme="light"] {
@@ -67,7 +76,7 @@
         }
 
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Outfit', 'Inter', sans-serif;
             background: var(--bg-body);
             color: var(--text-main);
             min-height: 100vh;
@@ -81,10 +90,10 @@
         h4,
         h5,
         .syncopate {
-            font-family: 'Syncopate', sans-serif;
+            font-family: 'Outfit', 'Syncopate', sans-serif;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            font-weight: 700;
+            letter-spacing: 4px;
+            font-weight: 800;
         }
 
         /* Mesh Bloom 2.0 */
@@ -139,6 +148,16 @@
             left: 40%;
             opacity: 0.15;
             animation-duration: 35s;
+        }
+
+        .blob-4 {
+            width: 35vw;
+            height: 35vw;
+            background: var(--neon-2);
+            bottom: 20%;
+            left: 10%;
+            opacity: 0.1;
+            animation: drift 40s infinite alternate-reverse;
         }
 
         @keyframes drift {
@@ -348,9 +367,10 @@
         }
 
         .glass-card:hover {
-            border-color: rgba(var(--primary-rgb), 0.4);
-            transform: translateY(-8px) scale(1.01);
-            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(var(--primary-rgb), 0.6);
+            transform: translateY(-12px) scale(1.02);
+            background: rgba(var(--primary-rgb), 0.12);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6), 0 0 20px rgba(var(--primary-rgb), 0.2);
         }
 
         [data-bs-theme="light"] .glass-card:hover {
@@ -560,45 +580,127 @@
         }
 
         /* Roadmap Ascension */
-        .roadmap-node {
-            padding: 2rem;
-            border-left: 2px solid rgba(var(--primary-rgb), 0.2);
+        /* Roadmap Ascension 2.0 - Neon Tiers */
+        .roadmap-container {
             position: relative;
-            margin-bottom: 2rem;
-            background: rgba(var(--primary-rgb), 0.02);
-            border-radius: 0 24px 24px 0;
+            padding-left: 3rem;
+        }
+
+        .roadmap-line {
+            position: absolute;
+            left: 7px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--neon-1), var(--neon-2), var(--neon-3), var(--neon-4), var(--neon-5), var(--neon-6));
+            opacity: 0.3;
+        }
+
+        .roadmap-node {
+            position: relative;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            background: rgba(15, 23, 42, 0.4);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
             transition: var(--transition);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+        }
+
+        .roadmap-node::after {
+            content: attr(data-month);
+            position: absolute;
+            right: -10px;
+            bottom: -20px;
+            font-size: 8rem;
+            font-weight: 800;
+            opacity: 0.05;
+            color: white;
+            pointer-events: none;
+            font-family: 'Syncopate', sans-serif;
         }
 
         .roadmap-node:hover {
-            background: rgba(var(--primary-rgb), 0.05);
-            border-left-color: var(--primary);
-            transform: translateX(10px);
+            transform: translateX(15px) scale(1.02);
+            background: rgba(var(--primary-rgb), 0.1);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(var(--primary-rgb), 0.2);
+        }
+
+        /* Specific Neon Themes */
+        .node-month-1 {
+            border-left: 5px solid var(--neon-1);
+            box-shadow: -10px 0 20px -10px var(--neon-1);
+        }
+
+        .node-month-2 {
+            border-left: 5px solid var(--neon-2);
+            box-shadow: -10px 0 20px -10px var(--neon-2);
+        }
+
+        .node-month-3 {
+            border-left: 5px solid var(--neon-3);
+            box-shadow: -10px 0 20px -10px var(--neon-3);
+        }
+
+        .node-month-4 {
+            border-left: 5px solid var(--neon-4);
+            box-shadow: -10px 0 20px -10px var(--neon-4);
+        }
+
+        .node-month-5 {
+            border-left: 5px solid var(--neon-5);
+            box-shadow: -10px 0 20px -10px var(--neon-5);
+        }
+
+        .node-month-6 {
+            border-left: 5px solid var(--neon-6);
+            box-shadow: -10px 0 20px -10px var(--neon-6);
         }
 
         .roadmap-node::before {
             content: "";
             position: absolute;
-            left: -9px;
-            top: 0;
-            width: 16px;
-            height: 16px;
-            background: var(--primary);
+            left: -53px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 14px;
+            height: 14px;
+            background: white;
             border-radius: 50%;
-            box-shadow: 0 0 15px var(--primary);
-            animation: pulse 2s infinite;
+            z-index: 2;
+            box-shadow: 0 0 15px white;
         }
 
-        @keyframes pulse {
+        .node-month-1::before {
+            background: var(--neon-1);
+            box-shadow: 0 0 15px var(--neon-1);
+        }
 
-            0%,
-            100% {
-                box-shadow: 0 0 15px var(--primary);
-            }
+        .node-month-2::before {
+            background: var(--neon-2);
+            box-shadow: 0 0 15px var(--neon-2);
+        }
 
-            50% {
-                box-shadow: 0 0 25px var(--primary);
-            }
+        .node-month-3::before {
+            background: var(--neon-3);
+            box-shadow: 0 0 15px var(--neon-3);
+        }
+
+        .node-month-4::before {
+            background: var(--neon-4);
+            box-shadow: 0 0 15px var(--neon-4);
+        }
+
+        .node-month-5::before {
+            background: var(--neon-5);
+            box-shadow: 0 0 15px var(--neon-5);
+        }
+
+        .node-month-6::before {
+            background: var(--neon-6);
+            box-shadow: 0 0 15px var(--neon-6);
         }
 
         /* Loader */
@@ -1718,16 +1820,27 @@
                                     class="glass-card p-4 text-center border-success border-opacity-20 h-100 d-flex flex-column justify-content-center">
                                     <div class="small fw-bold text-muted mb-3">GLOBAL SALARY BENCHMARK</div>
 
-                                    <div class="d-flex align-items-center justify-content-center mb-2">
-                                        <span class="fs-4 me-2">🇺🇸</span>
-                                        <div class="h3 fw-black text-success mb-0">{{
-                                            result.market_intel.salary_range_usd }}</div>
-                                    </div>
-
-                                    <div class="d-flex align-items-center justify-content-center mb-2">
-                                        <span class="fs-4 me-2">🇮🇳</span>
-                                        <div class="h4 fw-bold text-success mb-0">{{
-                                            result.market_intel.salary_range_inr }}</div>
+                                    <div class="d-flex flex-column align-items-center gap-3">
+                                        <div
+                                            class="d-flex align-items-center justify-content-between w-100 px-4 py-2 rounded-4 bg-white bg-opacity-5">
+                                            <span class="fs-4">🇺🇸</span>
+                                            <div class="text-start flex-grow-1 ms-3">
+                                                <div class="small fw-bold text-muted" style="font-size: 0.6rem;">UNITED
+                                                    STATES</div>
+                                                <div class="h4 fw-black text-success mb-0">{{
+                                                    result.market_intel.salary_range_usd }}</div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="d-flex align-items-center justify-content-between w-100 px-4 py-2 rounded-4 bg-white bg-opacity-5">
+                                            <span class="fs-4">🇮🇳</span>
+                                            <div class="text-start flex-grow-1 ms-3">
+                                                <div class="small fw-bold text-muted" style="font-size: 0.6rem;">INDIA
+                                                </div>
+                                                <div class="h4 fw-black text-success mb-0">{{
+                                                    result.market_intel.salary_range_inr }}</div>
+                                            </div>
+                                        </div>
                                     </div>
 
                                     <p class="small text-muted mb-0 mt-3 fst-italic">Estimated via Market & Complexity
@@ -1868,10 +1981,11 @@
                                 <div class="roadmap-container">
                                     <div class="roadmap-line"></div>
                                     {% for step in result.career_roadmap.learning_plan_6_months %}
-                                    <div class="roadmap-node" data-aos="fade-left"
-                                        data-aos-delay="{{ loop.index0 * 100 }}">
-                                        <div class="h5 fw-black text-primary mb-1">MONTH {{ step.month }}</div>
-                                        <p class="text-muted">{{ step.focus }}</p>
+                                    <div class="roadmap-node node-month-{{ loop.index }}" data-aos="fade-left"
+                                        data-aos-delay="{{ loop.index0 * 100 }}" data-month="{{ step.month }}">
+                                        <div class="h5 fw-black mb-2" style="color: var(--neon-{{ loop.index }});">MONTH
+                                            {{ step.month }}</div>
+                                        <p class="text-main mb-0 opacity-90">{{ step.focus }}</p>
                                     </div>
                                     {% endfor %}
                                 </div>
@@ -2370,13 +2484,11 @@
             }, 500);
         }
 
-        // High-Fidelity Download Report Function
+        // Download Report using Browser Print (Save as PDF)
         function downloadReport(btn) {
-            const pdfContainer = document.getElementById('pdf-capture-container');
-            const target = document.getElementById('pdf-content-target');
             const source = document.getElementById('results');
 
-            if (!source || !pdfContainer || !target) {
+            if (!source) {
                 alert('No results to download!');
                 return;
             }
@@ -2385,136 +2497,248 @@
             btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>PREPARING...';
             btn.disabled = true;
 
-            setTimeout(() => {
-                try {
-                    // Clear previous content
-                    target.innerHTML = '';
+            // Create a print-friendly version
+            const printWindow = window.open('', '_blank', 'width=800,height=600');
 
-                    // Temporarily move container to be capture-ready
-                    pdfContainer.style.display = 'block';
-                    pdfContainer.style.position = 'fixed';
-                    pdfContainer.style.left = '0';
-                    pdfContainer.style.top = '0';
-                    pdfContainer.style.zIndex = '99999';
-                    pdfContainer.style.background = 'white';
+            if (!printWindow) {
+                alert('Please allow popups to download the report.');
+                btn.innerHTML = originalHTML;
+                btn.disabled = false;
+                return;
+            }
 
-                    // 1. Clone only essential data for a clean PDF look
-                    const clone = source.cloneNode(true);
+            // Build the print content with text-focused styling
+            const candidateName = resultData?.candidate_info?.name || 'Candidate';
+            const candidateTitle = resultData?.candidate_info?.title || '';
+            const atsScore = resultData?.ats_analysis?.overall_score || 0;
+            const decision = resultData?.recruiter_review?.decision || 'N/A';
 
-                    // 2. Hide noise elements from clone
-                    clone.querySelectorAll('.btn, .nav, .theme-switch, .ai-avatar, .mesh-container, script, [data-html2canvas-ignore]').forEach(el => el.remove());
+            let printContent = `
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Resume Analysis Report - ${candidateName}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+            color: #1e293b; 
+            line-height: 1.6; 
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; color: #0f172a; margin-bottom: 12px; }
+        h1 { font-size: 28px; text-align: center; color: #6366f1; border-bottom: 3px solid #6366f1; padding-bottom: 15px; margin-bottom: 30px; }
+        h2 { font-size: 20px; color: #6366f1; margin-top: 30px; border-left: 4px solid #6366f1; padding-left: 12px; }
+        h3 { font-size: 16px; color: #475569; margin-top: 20px; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .header .name { font-size: 32px; font-weight: 800; color: #0f172a; letter-spacing: 2px; }
+        .header .title { font-size: 18px; color: #6366f1; margin-top: 5px; }
+        .score-box { 
+            display: flex; 
+            justify-content: space-around; 
+            background: #f1f5f9; 
+            padding: 25px; 
+            border-radius: 12px; 
+            margin: 30px 0;
+        }
+        .score-item { text-align: center; }
+        .score-value { font-size: 48px; font-weight: 800; color: #6366f1; }
+        .score-label { font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 1px; }
+        .decision { 
+            font-size: 24px; 
+            font-weight: 700; 
+            padding: 8px 20px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+        .decision.shortlisted { background: #dcfce7; color: #16a34a; }
+        .decision.maybe { background: #fef3c7; color: #d97706; }
+        .decision.rejected { background: #fee2e2; color: #dc2626; }
+        .section { margin: 25px 0; page-break-inside: avoid; }
+        .pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0; }
+        .pill { 
+            background: #e0e7ff; 
+            color: #4338ca; 
+            padding: 6px 14px; 
+            border-radius: 20px; 
+            font-size: 13px;
+            font-weight: 500;
+        }
+        .pill.danger { background: #fee2e2; color: #dc2626; }
+        .pill.warning { background: #fef3c7; color: #d97706; }
+        .pill.success { background: #dcfce7; color: #16a34a; }
+        .list-item { 
+            padding: 12px 16px; 
+            margin: 8px 0; 
+            background: #f8fafc; 
+            border-left: 3px solid #6366f1;
+            border-radius: 0 8px 8px 0;
+        }
+        .list-item.danger { border-left-color: #dc2626; }
+        .list-item.success { border-left-color: #16a34a; }
+        .breakdown { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin: 15px 0; }
+        .breakdown-item { background: #f1f5f9; padding: 15px; border-radius: 8px; text-align: center; }
+        .breakdown-score { font-size: 24px; font-weight: 700; color: #6366f1; }
+        .breakdown-label { font-size: 11px; color: #64748b; text-transform: uppercase; }
+        .footer { 
+            text-align: center; 
+            margin-top: 50px; 
+            padding-top: 20px; 
+            border-top: 1px solid #e2e8f0; 
+            color: #94a3b8; 
+            font-size: 12px;
+        }
+        p { margin: 10px 0; }
+        @media print {
+            body { padding: 20px; }
+            .section { page-break-inside: avoid; }
+        }
+    </style>
+</head>
+<body>
+    <h1>RESUME ANALYSIS REPORT</h1>
+    
+    <div class="header">
+        <div class="name">${candidateName}</div>
+        <div class="title">${candidateTitle}</div>
+    </div>
 
-                    // 3. Attach clone to target immediately so getComputedStyle works correctly
-                    target.appendChild(clone);
+    <div class="score-box">
+        <div class="score-item">
+            <div class="score-value">${atsScore}%</div>
+            <div class="score-label">ATS Compatibility Score</div>
+        </div>
+        <div class="score-item">
+            <div class="decision ${decision.toLowerCase()}">${decision}</div>
+            <div class="score-label">Recruiter Decision</div>
+        </div>
+    </div>`;
 
-                    // 4. Aggressive cleanup of visibility, AOS, and transitions
-                    const allElements = clone.querySelectorAll('*');
-                    allElements.forEach(el => {
-                        // Kill AOS and forced hidden states
-                        el.classList.remove('aos-init', 'aos-animate');
-                        el.removeAttribute('data-aos');
-                        el.removeAttribute('data-aos-delay');
-                        el.style.setProperty('opacity', '1', 'important');
-                        el.style.setProperty('visibility', 'visible', 'important');
-                        el.style.setProperty('transform', 'none', 'important');
-                        el.style.setProperty('transition', 'none', 'important');
-                        el.style.setProperty('animation', 'none', 'important');
+            // ATS Breakdown
+            if (resultData?.ats_analysis?.breakdown) {
+                const bd = resultData.ats_analysis.breakdown;
+                printContent += `
+    <h2>ATS Score Breakdown</h2>
+    <div class="breakdown">
+        <div class="breakdown-item"><div class="breakdown-score">${bd.skill_match || 0}%</div><div class="breakdown-label">Skill Match</div></div>
+        <div class="breakdown-item"><div class="breakdown-score">${bd.keyword_match || 0}%</div><div class="breakdown-label">Keywords</div></div>
+        <div class="breakdown-item"><div class="breakdown-score">${bd.experience_relevance || 0}%</div><div class="breakdown-label">Relevance</div></div>
+        <div class="breakdown-item"><div class="breakdown-score">${bd.formatting_quality || 0}%</div><div class="breakdown-label">Formatting</div></div>
+    </div>`;
+            }
 
-                        if (el.classList.contains('tab-pane')) {
-                            el.classList.add('show', 'active');
-                            el.style.setProperty('display', 'block', 'important');
-                        }
+            // AI Analysis
+            if (resultData?.ats_analysis?.explanation) {
+                printContent += `
+    <div class="section">
+        <h2>AI Analysis</h2>
+        <p>${resultData.ats_analysis.explanation}</p>
+    </div>`;
+            }
 
-                        // Get computed style for debugging/checking
-                        const style = window.getComputedStyle(el);
+            // Critical Points & Strengths
+            if (resultData?.recruiter_review) {
+                const rr = resultData.recruiter_review;
+                printContent += `
+    <div class="section">
+        <h2>Recruiter Feedback</h2>
+        <p><em>${rr.honest_feedback || ''}</em></p>
+    </div>`;
 
-                        // Forcefully remove background gradients which cause 'addColorStop' non-finite errors
-                        if (style.backgroundImage.indexOf('gradient') !== -1 || style.background.indexOf('gradient') !== -1) {
-                            el.style.setProperty('background', '#ffffff', 'important');
-                            el.style.setProperty('background-image', 'none', 'important');
-                        }
-
-                        // Fix gradient text/clip issues
-                        if (style.webkitBackgroundClip === 'text' || style.backgroundClip === 'text') {
-                            el.style.setProperty('background', 'none', 'important');
-                            el.style.setProperty('-webkit-background-clip', 'initial', 'important');
-                            el.style.setProperty('background-clip', 'initial', 'important');
-                            el.style.setProperty('-webkit-text-fill-color', '#0f172a', 'important');
-                            el.style.setProperty('color', '#0f172a', 'important');
-                        }
-
-                        // Ensure contrast
-                        if (style.color.includes('var') || style.color === 'rgba(0, 0, 0, 0)' || style.color === 'transparent') {
-                            el.style.setProperty('color', '#0f172a', 'important');
-                        }
+                if (rr.critical_fail_points?.length) {
+                    printContent += `<h3>Critical Points</h3>`;
+                    rr.critical_fail_points.forEach(p => {
+                        printContent += `<div class="list-item danger">${p}</div>`;
                     });
-
-                    // Component-specific cleanups
-                    clone.querySelectorAll('.glass-card').forEach(c => {
-                        c.style.setProperty('background', '#ffffff', 'important');
-                        c.style.setProperty('border', '1px solid #e2e8f0', 'important');
-                        c.style.setProperty('color', '#0f172a', 'important');
-                        c.style.setProperty('box-shadow', 'none', 'important');
-                        c.style.setProperty('backdrop-filter', 'none', 'important');
-                        c.style.setProperty('padding', '20px', 'important');
-                        c.style.setProperty('margin-bottom', '20px', 'important');
+                }
+                if (rr.key_strengths?.length) {
+                    printContent += `<h3>Key Strengths</h3>`;
+                    rr.key_strengths.forEach(p => {
+                        printContent += `<div class="list-item success">${p}</div>`;
                     });
+                }
+            }
 
-                    clone.querySelectorAll('.intel-pill').forEach(p => {
-                        p.style.setProperty('background', '#f1f5f9', 'important');
-                        p.style.setProperty('color', '#1e293b', 'important');
-                        p.style.setProperty('border', '1px solid #cbd5e1', 'important');
-                        p.style.setProperty('box-shadow', 'none', 'important');
-                    });
+            // Skill Gaps
+            if (resultData?.skill_gap_analysis) {
+                const sg = resultData.skill_gap_analysis;
+                printContent += `<div class="section"><h2>Skill Gap Analysis</h2>`;
+                if (sg.missing_technical_skills?.length) {
+                    printContent += `<h3>Missing Technical Skills</h3><div class="pills">`;
+                    sg.missing_technical_skills.forEach(s => { printContent += `<span class="pill danger">${s}</span>`; });
+                    printContent += `</div>`;
+                }
+                if (sg.missing_soft_skills?.length) {
+                    printContent += `<h3>Missing Soft Skills</h3><div class="pills">`;
+                    sg.missing_soft_skills.forEach(s => { printContent += `<span class="pill warning">${s}</span>`; });
+                    printContent += `</div>`;
+                }
+                printContent += `</div>`;
+            }
 
-                    clone.querySelectorAll('.persona-banner').forEach(b => {
-                        b.style.setProperty('background', '#f8fafc', 'important');
-                        b.style.setProperty('border-bottom', '2px solid #e2e8f0', 'important');
-                    });
+            // Career Roadmap
+            if (resultData?.career_roadmap?.learning_plan_6_months?.length) {
+                printContent += `<div class="section"><h2>6-Month Learning Roadmap</h2>`;
+                resultData.career_roadmap.learning_plan_6_months.forEach(step => {
+                    printContent += `<div class="list-item"><strong>Month ${step.month}:</strong> ${step.focus}</div>`;
+                });
+                if (resultData.career_roadmap.final_advice) {
+                    printContent += `<p style="margin-top:15px; padding:15px; background:#fef3c7; border-radius:8px;"><strong>Final Advice:</strong> ${resultData.career_roadmap.final_advice}</p>`;
+                }
+                printContent += `</div>`;
+            }
 
-                    clone.querySelectorAll('svg circle, svg path').forEach(s => {
-                        s.style.setProperty('transition', 'none', 'important');
-                        s.style.setProperty('animation', 'none', 'important');
-                    });
+            // Market Intel
+            if (resultData?.market_intel) {
+                const mi = resultData.market_intel;
+                printContent += `
+    <div class="section">
+        <h2>Market Intelligence</h2>
+        <div class="breakdown">
+            <div class="breakdown-item"><div class="breakdown-score" style="font-size:16px;">${mi.salary_range_usd || 'N/A'}</div><div class="breakdown-label">Salary (USA)</div></div>
+            <div class="breakdown-item"><div class="breakdown-score" style="font-size:16px;">${mi.salary_range_inr || 'N/A'}</div><div class="breakdown-label">Salary (India)</div></div>
+        </div>
+        <p><strong>Market Demand:</strong> ${mi.market_demand || 'N/A'}</p>
+    </div>`;
+            }
 
-                    const opt = {
-                        margin: [10, 10, 10, 10],
-                        filename: `Analysis_Report_${resultData?.candidate_info?.name || 'Resume'}.pdf`,
-                        image: { type: 'jpeg', quality: 0.98 },
-                        html2canvas: {
-                            scale: 1.5,
-                            useCORS: true,
-                            logging: false,
-                            letterRendering: true,
-                            backgroundColor: '#ffffff',
-                            scrollX: 0,
-                            scrollY: 0
-                        },
-                        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                    };
+            // Tailoring suggestions
+            if (resultData?.resume_tailoring?.new_summary) {
+                printContent += `
+    <div class="section">
+        <h2>Optimized Summary</h2>
+        <p style="background:#f0fdf4; padding:15px; border-radius:8px; border-left:4px solid #22c55e;">${resultData.resume_tailoring.new_summary}</p>
+    </div>`;
+            }
 
-                    html2pdf().set(opt).from(pdfContainer).save().then(() => {
-                        console.log('PDF saved successfully');
-                        pdfContainer.style.display = 'none';
-                        btn.innerHTML = originalHTML;
-                        btn.disabled = false;
-                    }).catch(err => {
-                        console.error('PDF Generation Error:', err);
-                        pdfContainer.style.display = 'none';
-                        btn.innerHTML = originalHTML;
-                        btn.disabled = false;
-                        alert('Error during PDF conversion. Please try again.');
-                    });
+            printContent += `
+    <div class="footer">
+        <p>Generated by AI Resume Analyzer | Powered by Google Gemini</p>
+        <p>2026 AI-Powered Career Intelligence Engine</p>
+    </div>
+</body>
+</html>`;
 
-                } catch (err) {
-                    console.error('PDF Preparation Error:', err);
-                    pdfContainer.style.display = 'none';
+            printWindow.document.write(printContent);
+            printWindow.document.close();
+
+            // Wait for content to load then trigger print
+            printWindow.onload = function () {
+                setTimeout(() => {
+                    printWindow.print();
                     btn.innerHTML = originalHTML;
                     btn.disabled = false;
-                    alert('Failed to prepare report for PDF: ' + err.message);
-                }
-            }, 500);
+                }, 500);
+            };
         }
+
+
+
+
 
 
 
