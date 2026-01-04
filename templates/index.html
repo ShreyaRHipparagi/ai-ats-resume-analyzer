@@ -312,7 +312,7 @@
         }
 
         [data-bs-theme="light"] .theme-knob {
-            transform: translateX(34px);
+            transform: translateX(38px);
         }
 
         .theme-knob i {
@@ -430,27 +430,79 @@
         }
 
 
-        /* Fixed Pill Style for Badges - Solving Overflow */
+        /* Hyper-Premium Feature Pills Grid */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-top: 2.5rem;
+            margin-bottom: 2.5rem;
+            width: 100%;
+        }
+
+        @media (min-width: 992px) {
+            .feature-grid {
+                grid-template-columns: repeat(3, 1fr);
+                max-width: 650px;
+                /* Keep it contained on desktop */
+            }
+        }
+
         .intel-pill {
-            display: inline-block;
-            padding: 10px 20px;
-            border-radius: 16px;
-            background: rgba(var(--primary-rgb), 0.1);
-            border: 1px solid rgba(var(--primary-rgb), 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 12px;
+            padding: 12px 20px;
+            border-radius: 20px;
+            background: rgba(var(--primary-rgb), 0.05);
+            border: 1px solid rgba(var(--primary-rgb), 0.15);
             color: var(--text-main);
             font-size: 0.9rem;
-            font-weight: 500;
-            margin: 5px;
-            max-width: 100%;
-            word-wrap: break-word;
-            transition: var(--transition);
+            font-weight: 600;
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: default;
+            width: 100%;
+            /* Fill grid cell */
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        .intel-pill i {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+            filter: drop-shadow(0 0 5px currentColor);
         }
 
         .intel-pill:hover {
-            background: rgba(var(--primary-rgb), 0.2);
+            background: rgba(var(--primary-rgb), 0.12);
             border-color: var(--primary);
-            box-shadow: 0 0 15px rgba(var(--primary-rgb), 0.3);
-            transform: translateY(-2px);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(var(--primary-rgb), 0.2),
+                0 0 20px rgba(var(--primary-rgb), 0.1);
+        }
+
+        [data-bs-theme="light"] .intel-pill {
+            background: rgba(99, 102, 241, 0.08);
+            border-color: rgba(99, 102, 241, 0.1);
+            color: #1e1b4b;
+        }
+
+        .pill-accent {
+            border-color: rgba(var(--accent-rgb), 0.3);
+            color: var(--accent);
+        }
+
+        .pill-secondary {
+            border-color: rgba(var(--secondary-rgb), 0.3);
+            color: var(--secondary);
         }
 
         .pill-danger {
@@ -951,7 +1003,7 @@
         /* Scroll to Top Button */
         #scrollTopBtn {
             position: fixed;
-            bottom: 100px;
+            bottom: 30px;
             left: 30px;
             width: 50px;
             height: 50px;
@@ -1010,24 +1062,49 @@
         /* Responsive */
         @media (max-width: 768px) {
             .hero-title {
-                font-size: clamp(2rem, 8vw, 4rem);
+                font-size: clamp(2.5rem, 12vw, 4rem);
             }
 
-            .pills-premium .nav-link {
-                padding: 10px 16px;
-                font-size: 0.75rem;
+            .brand-name {
+                font-size: 1.1rem;
             }
 
-            .score-hero {
-                width: 200px;
-                height: 200px;
+            .brand-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 1rem;
+            }
+
+            .brand-powered {
+                display: none;
+            }
+
+            .theme-switch {
+                width: 60px;
+                height: 32px;
+            }
+
+            .theme-knob {
+                width: 24px;
+                height: 24px;
+            }
+
+            [data-bs-theme="light"] .theme-knob {
+                transform: translateX(32px);
+            }
+
+            #scrollTopBtn {
+                bottom: 25px;
+                left: 25px;
+                width: 48px;
+                height: 48px;
             }
 
             .ai-avatar {
-                width: 50px;
-                height: 50px;
-                bottom: 20px;
-                right: 20px;
+                width: 48px;
+                height: 48px;
+                bottom: 25px;
+                right: 25px;
             }
 
             .ai-avatar i {
@@ -1432,23 +1509,23 @@
                 <p class="hero-subtitle">🚀 Transform Your Career Journey</p>
                 <div class="lead-premium mb-4">
                     <i class="fas fa-microchip mt-1 text-primary"></i>
-                    <span>The world’s most advanced AI-powered resume analysis engine, powered by Google Gemini to simulate HR decision-making and technical hiring standards.</span>
+                    <span>The world’s most advanced AI-powered resume analysis engine, powered by Google Gemini to
+                        simulate HR decision-making and technical hiring standards.</span>
                 </div>
-                <div class="d-flex gap-3 flex-wrap justify-content-center justify-content-lg-start mb-4">
-                    <span class="intel-pill"><i class="fas fa-shield-halved text-primary me-2"></i>99% ATS
-                        Precision</span>
-                    <span class="intel-pill"><i class="fas fa-vial-circle-check text-secondary me-2"></i>Recruiter
+                <div class="feature-grid justify-content-center justify-content-lg-start">
+                    <span class="intel-pill"><i class="fas fa-shield-halved text-primary"></i>99% ATS Precision</span>
+                    <span class="intel-pill"><i class="fas fa-vial-circle-check text-secondary"></i>Recruiter
                         Validated</span>
-                    <span class="intel-pill"><i class="fas fa-magic me-2" style="color: var(--accent);"></i>Gemini
+                    <span class="intel-pill"><i class="fas fa-magic" style="color: var(--accent);"></i>Gemini
                         Powered</span>
-                    <span class="intel-pill"><i class="fas fa-file-lines text-primary me-2"></i>AI Cover Letter</span>
-                    <span class="intel-pill"><i class="fas fa-route text-secondary me-2"></i>Career Roadmap</span>
-                    <span class="intel-pill"><i class="fas fa-comments text-accent me-2"
-                            style="color: var(--accent);"></i>Interview Prep</span>
-                    <span class="intel-pill"><i class="fas fa-dna text-primary me-2"></i>Skill Gap DNA</span>
-                    <span class="intel-pill"><i class="fas fa-chart-line text-secondary me-2"></i>Market Intel</span>
-                    <span class="intel-pill"><i class="fas fa-building text-accent me-2"
-                            style="color: var(--accent);"></i>FAANG Matchmaker</span>
+                    <span class="intel-pill"><i class="fas fa-file-lines text-primary"></i>AI Cover Letter</span>
+                    <span class="intel-pill"><i class="fas fa-route text-secondary"></i>Career Roadmap</span>
+                    <span class="intel-pill"><i class="fas fa-comments" style="color: var(--accent);"></i>Interview
+                        Prep</span>
+                    <span class="intel-pill"><i class="fas fa-dna text-primary"></i>Skill Gap DNA</span>
+                    <span class="intel-pill"><i class="fas fa-chart-line text-secondary"></i>Market Intel</span>
+                    <span class="intel-pill"><i class="fas fa-building" style="color: var(--accent);"></i>FAANG
+                        Matchmaker</span>
                 </div>
             </div>
 
