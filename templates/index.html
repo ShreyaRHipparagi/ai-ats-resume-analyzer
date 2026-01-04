@@ -361,7 +361,7 @@
         .hero-title {
             font-size: clamp(3rem, 10vw, 6rem);
             line-height: 0.85;
-            margin-bottom: 2.5rem;
+            margin-bottom: 2rem;
             background: linear-gradient(135deg, #fff 30%, var(--primary) 100%);
             -webkit-background-clip: text;
             background-clip: text;
@@ -377,6 +377,35 @@
             -webkit-text-fill-color: transparent;
         }
 
+        .hero-subtitle {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            filter: drop-shadow(0 0 10px rgba(var(--secondary-rgb), 0.3));
+            animation: subtitlePulse 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes subtitlePulse {
+            from {
+                filter: drop-shadow(0 0 5px rgba(var(--secondary-rgb), 0.2));
+            }
+
+            to {
+                filter: drop-shadow(0 0 15px rgba(var(--accent-rgb), 0.5));
+            }
+        }
+
         @keyframes gradientShift {
 
             0%,
@@ -388,6 +417,18 @@
                 background-position: 100% 50%;
             }
         }
+
+        .lead-premium {
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: var(--text-muted);
+            max-width: 600px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
 
         /* Fixed Pill Style for Badges - Solving Overflow */
         .intel-pill {
@@ -911,7 +952,7 @@
         #scrollTopBtn {
             position: fixed;
             bottom: 100px;
-            right: 30px;
+            left: 30px;
             width: 50px;
             height: 50px;
             background: var(--glass-bg);
@@ -1368,12 +1409,12 @@
         <div class="container d-flex justify-content-between align-items-center">
             <a class="navbar-brand" href="/">
                 <div class="brand-icon">
-                    <i class="fas fa-brain-circuit icon-glow"></i>
+                    <i class="fas fa-brain icon-glow"></i>
                 </div>
                 <div class="brand-text">
                     <span class="brand-name syncopate">AI RESUME ANALYZER</span>
                     <span class="brand-powered">Powered by <span class="gemini-badge">Google Gemini</span> <i
-                            class="fas fa-sparkles" style="color: var(--accent);"></i></span>
+                            class="fas fa-magic" style="color: var(--accent);"></i></span>
                 </div>
             </a>
             <div class="theme-switch" id="toggleTheme">
@@ -1388,18 +1429,27 @@
         <div class="row align-items-center" data-aos="zoom-out">
             <div class="col-lg-7 text-center text-lg-start mb-5 mb-lg-0">
                 <h1 class="hero-title">AI RESUME<br>ANALYZER</h1>
-                <p class="hero-subtitle">Transform Your Career Journey</p>
-                <p class="lead text-muted mb-4" style="max-width: 600px; font-size: 1.15rem;">
-                    The world's most advanced AI-powered resume analysis engine. Powered by Google Gemini to simulate HR
-                    minds and technical bar-raisers.
-                </p>
+                <p class="hero-subtitle">🚀 Transform Your Career Journey</p>
+                <div class="lead-premium mb-4">
+                    <i class="fas fa-microchip mt-1 text-primary"></i>
+                    <span>The world's most advanced AI-powered resume analysis engine. Powered by Google Gemini to
+                        simulate HR minds and technical bar-raisers.</span>
+                </div>
                 <div class="d-flex gap-3 flex-wrap justify-content-center justify-content-lg-start mb-4">
                     <span class="intel-pill"><i class="fas fa-shield-halved text-primary me-2"></i>99% ATS
                         Precision</span>
                     <span class="intel-pill"><i class="fas fa-vial-circle-check text-secondary me-2"></i>Recruiter
                         Validated</span>
-                    <span class="intel-pill"><i class="fas fa-sparkles me-2" style="color: var(--accent);"></i>Gemini
+                    <span class="intel-pill"><i class="fas fa-magic me-2" style="color: var(--accent);"></i>Gemini
                         Powered</span>
+                    <span class="intel-pill"><i class="fas fa-file-lines text-primary me-2"></i>AI Cover Letter</span>
+                    <span class="intel-pill"><i class="fas fa-route text-secondary me-2"></i>Career Roadmap</span>
+                    <span class="intel-pill"><i class="fas fa-comments text-accent me-2"
+                            style="color: var(--accent);"></i>Interview Prep</span>
+                    <span class="intel-pill"><i class="fas fa-dna text-primary me-2"></i>Skill Gap DNA</span>
+                    <span class="intel-pill"><i class="fas fa-chart-line text-secondary me-2"></i>Market Intel</span>
+                    <span class="intel-pill"><i class="fas fa-building text-accent me-2"
+                            style="color: var(--accent);"></i>FAANG Matchmaker</span>
                 </div>
             </div>
 
@@ -1441,8 +1491,9 @@
                         <div id="coachWelcome" class="text-center py-4">
                             <div class="display-1 mb-3">🤖</div>
                             <h4>Hello! I'm your AI Coach.</h4>
-                            <p class="text-muted">Analyze a resume to get personalized career advice and tactical
-                                improvements.</p>
+                            <p class="text-muted">Analyze a resume to get personalized career advice, tactical
+                                improvements, FAANG-level bullet points, and a professional 6-month roadmap tailored
+                                specifically to your goals.</p>
                         </div>
                         <div id="coachInsights" style="display: none;">
                             <h6 class="text-primary syncopate mb-3 small">DIRECTIVES FROM THE COACH</h6>
@@ -1505,7 +1556,7 @@
                 <div class="p-4 p-lg-5 text-center border-bottom border-glass persona-banner">
                     <div class="d-inline-flex align-items-center justify-content-center mb-4"
                         style="width: 120px; height: 120px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 35px; transform: rotate(5deg); box-shadow: 0 25px 50px -12px rgba(var(--primary-rgb), 0.6);">
-                        <i class="fas fa-user-astronaut text-white display-3" style="transform: rotate(-5deg);"></i>
+                        <i class="fas fa-user-tie text-white display-3" style="transform: rotate(-5deg);"></i>
                     </div>
                     <h2 class="syncopate mb-2"
                         style="font-size: clamp(2rem, 5vw, 3.5rem); letter-spacing: 8px; font-weight: 800;">{{
@@ -1558,7 +1609,7 @@
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="tab-cover-letter-btn" data-bs-toggle="pill"
                                     data-bs-target="#tab-cover-letter" type="button" role="tab"><i
-                                        class="fas fa-sparkles me-2"></i>Cover Letter</button>
+                                        class="fas fa-magic me-2"></i>Cover Letter</button>
                             </li>
                             <li class="nav-item" role="presentation">
                                 <button class="nav-link" id="tab-advanced-btn" data-bs-toggle="pill"
@@ -1623,7 +1674,7 @@
                                     ('laptop-code', 'fa-beat', 'skill_match', 'SKILL MATCH'),
                                     ('magnifying-glass-chart', 'fa-fade', 'keyword_match', 'KEYWORDS'),
                                     ('bullseye', 'fa-beat-fade', 'experience_relevance', 'RELEVANCE'),
-                                    ('sparkles', 'fa-bounce', 'formatting_quality', 'UI/FORMAT')
+                                    ('magic', 'fa-bounce', 'formatting_quality', 'UI/FORMAT')
                                     ] %}
                                     <div class="col-6">
                                         <div class="breakdown-card">
@@ -2025,7 +2076,8 @@
         <div class="container">
             <h5 class="syncopate mb-3 text-primary">AI RESUME ANALYZER</h5>
             <p class="text-muted small mb-2">Powered by <span class="gemini-badge">Google Gemini</span></p>
-            <p class="text-muted small">© 2026 AI-Powered Career Intelligence Engine</p>
+            <p class="text-muted small">© 2026 AI-Powered Career Intelligence Engine • Built by Shreya R
+                Hipparagi</p>
         </div>
     </footer>
 
@@ -2042,7 +2094,7 @@
         </div>
         <div
             style="margin-top: 50px; border-top: 1px solid #e2e8f0; padding-top: 20px; text-align: center; color: #94a3b8; font-size: 12px;">
-            © 2026 AI-Powered Career Intelligence Engine • confidential analysis
+            © 2026 AI-Powered Career Intelligence Engine • Built by Shreya R Hipparagi • confidential analysis
         </div>
     </div>
 
