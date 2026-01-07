@@ -1,8 +1,8 @@
 # 🧠 AI Career Architect — Resume & Career Intelligence
 
-[![Google Gemini](https://img.shields.io/badge/AI-Google%20Gemini%202.0-blue?logo=google-gemini)](https://aistudio.google.com/app/apikey) [![Flask](https://img.shields.io/badge/Backend-Flask-black?logo=flask)](https://flask.palletsprojects.com/) [![Design](https://img.shields.io/badge/Design-Glassmorphism-purple?logo=css3)](https://developer.mozilla.org/en-US/docs/Web/CSS) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Google Gemini](https://img.shields.io/badge/AI-Google%20Gemini%202.5-blue?logo=google-gemini)](https://aistudio.google.com/app/apikey) [![Flask](https://img.shields.io/badge/Backend-Flask-black?logo=flask)](https://flask.palletsprojects.com/) [![Design](https://img.shields.io/badge/Design-Glassmorphism-purple?logo=css3)](https://developer.mozilla.org/en-US/docs/Web/CSS) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**AI Career Architect** is an elite, end-to-end resume intelligence platform designed to help professionals escape the "black hole" of automated rejections. By combining high-fidelity PDF parsing with a multi-persona AI orchestration (Google Gemini 2.0 Flash), the system delivers a hyper-visual dashboard of metrics, FAANG-level bullet rewrites, and a personalized 6-month roadmap.
+**AI Career Architect** is an elite, end-to-end resume intelligence platform designed to help professionals escape the "black hole" of automated rejections. By combining high-fidelity PDF parsing with a multi-persona AI orchestration (Google Gemini 2.5 Flash), the system delivers a hyper-visual dashboard of metrics, FAANG-level bullet rewrites, and a personalized 6-month roadmap.
 
 Table of contents
 - Problem
@@ -19,6 +19,16 @@ Table of contents
 - Contributing
 - License & credits
 - Contact
+
+---
+
+## ✨ Premium Visual Experience
+The Architect is not just an analyzer; it's a visual journey.
+- **Glassmorphism UI**: High-fidelity translucent cards with backdrop blurs.
+- **Mesh Bloom Effects**: Dynamic, animated background blobs that shift based on theme.
+- **AOS (Animate On Scroll)**: Staggered, smooth entrance animations for all metrics.
+- **Micro-Animations**: Confetti celebrations for high scores and "cyber-spin" loaders.
+- **Interactive Data**: Progress rings, skill radars, and animated charts.
 
 ---
 
@@ -84,11 +94,12 @@ graph TD
     end
 
     subgraph Intelligence_Layer [The Ensemble Brain]
-        Normalized -->|System Prompt| Gemini[[✨ Google Gemini 2.0 Flash]]
+        Normalized -->|System Prompt| Gemini[[✨ Google Gemini 2.5 Flash]]
         
         subgraph Personas [Specialized Agents]
             Gemini --- P1[📉 THE CYNICAL SCANNER - ATS Metrics]
             Gemini --- P2[🏆 THE BAR RAISER - FAANG Standards]
+            P2 -->|X-Y-Z| P1
             Gemini --- P3[🔮 THE VISIONARY - Career Roadmap]
         end
     end
@@ -124,48 +135,80 @@ Each category produces a sub-score and the engine emits the combined ATS score p
 
 ---
 
-## 📦 Output format (example)
-All agents return structured JSON for predictable UI rendering. Example (abbreviated):
+## 📦 Output Engine: The Intelligence Schema
+The "Brain" emits a high-fidelity JSON payload encompassing everything from market intelligence to interview preparation.
 
 ```json
 {
-  "ats": {
-    "score": 62,
-    "breakdown": {
-      "keywords": 70,
-      "skills": 55,
-      "experience": 60,
-      "format": 90,
-      "actionability": 30
+  "candidate_info": {
+    "name": "Jane Doe",
+    "title": "Senior Software Engineer",
+    "career_persona": "The Disruptive Systems Architect",
+    "readiness_score": 88
+  },
+  "ats_analysis": {
+    "overall_score": 82,
+    "section_scores": {
+      "quantification": 90,
+      "experience": 85,
+      "tech_stack": 70,
+      "education": 95
     },
-    "matched_keywords": ["react", "nodejs", "rest api"],
-    "missing_high_priority_skills": ["system design", "scalability"]
+    "breakdown": {
+      "skill_match": 75,
+      "keyword_match": 80,
+      "experience_relevance": 85,
+      "formatting_quality": 90
+    },
+    "explanation": "### Analysis Deep-Dive\nYour resume shows **exceptional quantification** in backend roles..."
   },
-  "recruiter_feedback": {
-    "summary": "Resume shows strong frontend experience but lacks scale and leadership examples.",
-    "detailed": [
-      "Bullets are task-focused; emphasise outcomes and metrics.",
-      "Add backend integration projects showing design decisions and measurable impact."
-    ],
-    "priority_actions": [
-      {"id": "P1", "text": "Rewrite bullets to include metrics", "impact": "high"}
-    ]
+  "market_intel": {
+    "salary_range_usd": "$150k - $190k",
+    "salary_range_inr": "₹35L - ₹55L",
+    "market_demand": "High",
+    "top_competencies": ["Distributed Systems", "Cloud Native", "Go"]
   },
-  "mentor_rewrites": [
-    {
-      "original": "Worked on a web app with React",
-      "rewrite": "Led development of a React-based web application used by 10k+ monthly users; reduced page load time by 40% via code-splitting and lazy-loading."
+  "advanced_insights": {
+    "technical_depth_scouter": "High complexity noted in microservices orchestration.",
+    "culture_fit_predictor": "Strong alignment with high-growth startup values.",
+    "faang_matchmaker": "Google / Meta",
+    "skill_radar": {
+      "Technical": 90,
+      "Leadership": 75,
+      "Communication": 85,
+      "Problem Solving": 95,
+      "Innovation": 80
     }
-  ],
-  "learning_plan": {
-    "horizon_months": 6,
-    "milestones": [
-      {"month": 1, "goal": "Core system design concepts"},
-      {"month": 3, "goal": "Build and deploy a full-stack project with metrics"}
+  },
+  "recruiter_review": {
+    "decision": "Shortlisted",
+    "honest_feedback": "Resume is punchy and impact-heavy. Backend depth is undeniable.",
+    "critical_fail_points": ["Lack of public cloud certification mentioned."],
+    "key_strengths": ["Strong ROI focus", "Quantified achievements"]
+  },
+  "resume_tailoring": {
+    "enhanced_bullets": [
+      {
+        "original": "Worked on a web app",
+        "improved": "Engineered a React-based app used by 50k users, reducing load time by 30% by implementing Redis caching.",
+        "impact": "Shows scale and measurable performance gains."
+      }
     ],
-    "resources": [
-      {"title": "System Design Primer", "url": "https://example.com"}
+    "cover_letter": "A high-impact, professional cover letter tailored to the target role..."
+  },
+  "skill_gap_analysis": {
+    "missing_technical_skills": ["AWS Solutions Architect", "Terraform"],
+    "recommended_projects": [
+      {
+        "title": "Cloud-Native Infrastructure Bot",
+        "description": "Build an automated infra manager using Terraform...",
+        "tech_stack": ["Terraform", "Go", "AWS"]
+      }
     ]
+  },
+  "interview_prep": {
+    "technical_questions": ["Explain CAP theorem in the context of your last project."],
+    "behavioral_questions": ["Tell me about a time you had to pivot a technical decision."]
   }
 }
 ```
@@ -350,10 +393,10 @@ Repository: https://github.com/ShreyaRHipparagi/ai-ats-resume-analyzer
 
 | Component | Technology | Rationale |
 | :--- | :--- | :--- |
-| **Intelligence** | **Gemini 2.0 Flash** | Massive context window (1M+ tokens), Native JSON support, and ultra-low latency. |
-| **Extraction** | **PyMuPDF** | High-fidelity text extraction that preserves structural context from complex PDF layouts. |
-| **Backend** | **Flask / Streamlit** | Clean, modular Python backend for rapid deployment and robust API handling. |
-| **Frontend** | **Vanilla CSS + JS** | Custom Glassmorphism design system for a premium, non-generic look. |
+| **Intelligence** | **Gemini 2.5 Flash** | Advanced reasoning, massive context, and native JSON intelligence. |
+| **Extraction** | **PyMuPDF** | High-fidelity structural parsing of complex PDF layouts. |
+| **Animation** | **AOS + Confetti** | Smooth, high-performance entrance and success animations. |
+| **Styling** | **Glassmorphism** | Premium, modern aesthetic using advanced CSS blurs and gradients. |
 
 ---
 
@@ -368,4 +411,6 @@ Repository: https://github.com/ShreyaRHipparagi/ai-ats-resume-analyzer
 ## Contact
 Project maintainer: Shreya R. Hipparagi  
 Repository: https://github.com/ShreyaRHipparagi/ai-ats-resume-analyzer  
-For questions, feature requests, or enterprise inquiries, open an issue or send an email (add contact email in repo settings).
+For questions, feature requests, or enterprise inquiries, open an issue or send an email (shreyahipparagi2006@gmail.com).
+
+---
