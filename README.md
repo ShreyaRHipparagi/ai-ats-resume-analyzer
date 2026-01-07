@@ -1,8 +1,8 @@
 # 🧠 AI Career Architect — Resume & Career Intelligence
 
-[![Google Gemini](https://img.shields.io/badge/AI-Google%20Gemini-blue?logo=google-gemini)](https://aistudio.google.com/app/apikey) [![Flask](https://img.shields.io/badge/Backend-Flask-black?logo=flask)](https://flask.palletsprojects.com/) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Google Gemini](https://img.shields.io/badge/AI-Google%20Gemini%202.0-blue?logo=google-gemini)](https://aistudio.google.com/app/apikey) [![Flask](https://img.shields.io/badge/Backend-Flask-black?logo=flask)](https://flask.palletsprojects.com/) [![Design](https://img.shields.io/badge/Design-Glassmorphism-purple?logo=css3)](https://developer.mozilla.org/en-US/docs/Web/CSS) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-AI Career Architect is an intelligent, end-to-end resume and career coaching assistant built to help students and early-career professionals escape the "black hole" of automated rejections and enter the interview funnel with confidence. Designed for hackathons and rapid iteration, the system combines high-fidelity PDF parsing with a multi-agent AI backbone (Google Gemini) to deliver actionable, prioritized guidance and a personalized learning roadmap.
+**AI Career Architect** is an elite, end-to-end resume intelligence platform designed to help professionals escape the "black hole" of automated rejections. By combining high-fidelity PDF parsing with a multi-persona AI orchestration (Google Gemini 2.0 Flash), the system delivers a hyper-visual dashboard of metrics, FAANG-level bullet rewrites, and a personalized 6-month roadmap.
 
 Table of contents
 - Problem
@@ -42,6 +42,14 @@ Outcomes:
 - Prioritised, actionable improvements to resume and skill set
 - Rewritten bullets and templates tuned for recruiter and FAANG expectations
 
+### 🎭 The Expert Personas
+
+| Persona | Focus | Mission |
+| :--- | :--- | :--- |
+| **The Cynical Scanner** | Keywords & Format | To find every reason an ATS would reject your resume. |
+| **The Google Bar Raiser** | Impact & Depth | To ensure your experience sounds like a Senior Engineer at a top tech firm. |
+| **The Visionary Mentor** | Strategy & Growth | To plot the exact path from where you are to your dream role. |
+
 ---
 
 ## 🏷️ Key features
@@ -52,27 +60,47 @@ Outcomes:
 - Robust PDF parsing: high-fidelity text extraction using PyMuPDF
 - Deterministic outputs: JSON schema via `response_mime_type: application/json` for each agent
 
+### 📐 The X-Y-Z Formula
+The system optimizes your resume using the gold standard for high-impact resumes:
+> **"Accomplished [X] as measured by [Y], by doing [Z]"**
+
 ---
 
 ## 🏗️ Architecture & flow
 
 ```mermaid
 graph TD
-    User([User]) -->|Upload PDF + Job Description| Flask[Flask App]
-    Flask -->|PDF Extraction| PyMuPDF[PyMuPDF Engine]
-    PyMuPDF -->|Clean Text| GeminiAgent[Gemini Multi-Agent System]
+    %% Styling
+    classDef user fill:#f9f,stroke:#333,stroke-width:2px;
+    classDef engine fill:#bbf,stroke:#333,stroke-width:2px;
+    classDef brain fill:#dfd,stroke:#333,stroke-width:4px;
+    classDef out fill:#fdd,stroke:#333,stroke-width:2px;
 
-    subgraph Gemini Intelligence
-        GeminiAgent -->|Role 1| ATS[ATS Simulator]
-        GeminiAgent -->|Role 2| Recruiter[Senior Recruiter]
-        GeminiAgent -->|Role 3| Mentor[FAANG Mentor]
+    User([👤 User]) -->|Upload PDF + JD| Flask[🚀 Flask Application]
+    
+    subgraph Processing_Layer [Precision Extraction]
+        Flask -->|Extract Text| PyMuPDF[📄 PyMuPDF Engine]
+        PyMuPDF -->|Clean UTF-8| Normalized[Normalized Context]
     end
 
-    ATS -->|JSON Output| Dashboard[Premium Dashboard]
-    Recruiter -->|JSON Output| Dashboard
-    Mentor -->|JSON Output| Dashboard
+    subgraph Intelligence_Layer [The Ensemble Brain]
+        Normalized -->|System Prompt| Gemini[[✨ Google Gemini 2.0 Flash]]
+        
+        subgraph Personas [Specialized Agents]
+            Gemini --- P1[📉 THE CYNICAL SCANNER - ATS Metrics]
+            Gemini --- P2[🏆 THE BAR RAISER - FAANG Standards]
+            Gemini --- P3[🔮 THE VISIONARY - Career Roadmap]
+        end
+    end
 
-    Dashboard -->|Actionable Value| User
+    Gemini -->|Strict JSON| Dashboard[🎨 Premium Glassmorphism Dashboard]
+    Dashboard -->|Actionable Growth| User
+
+    %% Styles
+    class User user;
+    class Flask,PyMuPDF engine;
+    class Gemini,P1,P2,P3 brain;
+    class Dashboard out;
 ```
 
 High level flow:
@@ -189,7 +217,7 @@ By default the Flask backend serves API endpoints documented below.
 
 - POST /api/analyze
   - Payload: multipart/form-data or JSON
-    - resume: PDF file (multipart) OR resume_text (string)
+    - resume: PDF file (multipart)
     - job_description: text
     - options: { "model": "gemini-1.5-flash", "strict_mode": true }
   - Response: JSON payload containing ATS score, recruiter feedback, mentor rewrites, and learning plan
@@ -202,15 +230,6 @@ Example cURL (resume file upload):
 curl -X POST http://localhost:5000/api/analyze \
   -F "resume=@/path/to/resume.pdf" \
   -F "job_description=$(< job_description.txt)"
-```
-
-Example JSON payload (resume_text mode):
-```json
-{
-  "resume_text": "Jane Doe — Software Engineer. Built web apps using React and Node.js...",
-  "job_description": "We are hiring a Full-Stack Engineer with React and Node experience...",
-  "options": { "model": "gemini-1.5-flash", "strict_mode": false }
-}
 ```
 
 ---
@@ -327,9 +346,18 @@ Please follow the code style (Black + Flake8) and include tests for significant 
 MIT © 2026 AI Career Architect — Shreya R. Hipparagi  
 Repository: https://github.com/ShreyaRHipparagi/ai-ats-resume-analyzer
 
+## 📦 Technical Stack & Rationale
+
+| Component | Technology | Rationale |
+| :--- | :--- | :--- |
+| **Intelligence** | **Gemini 2.0 Flash** | Massive context window (1M+ tokens), Native JSON support, and ultra-low latency. |
+| **Extraction** | **PyMuPDF** | High-fidelity text extraction that preserves structural context from complex PDF layouts. |
+| **Backend** | **Flask / Streamlit** | Clean, modular Python backend for rapid deployment and robust API handling. |
+| **Frontend** | **Vanilla CSS + JS** | Custom Glassmorphism design system for a premium, non-generic look. |
+
 ---
 
-## Credits
+## 📝 Credits
 - Built with Google Gemini (LLM)
 - PyMuPDF for PDF parsing
 - Flask for the API backend
@@ -341,13 +369,3 @@ Repository: https://github.com/ShreyaRHipparagi/ai-ats-resume-analyzer
 Project maintainer: Shreya R. Hipparagi  
 Repository: https://github.com/ShreyaRHipparagi/ai-ats-resume-analyzer  
 For questions, feature requests, or enterprise inquiries, open an issue or send an email (add contact email in repo settings).
-
----
-
-If you'd like, I can:
-- produce an OpenAPI (Swagger) spec for the API endpoints,
-- add example unit tests and CI workflow files to the repository,
-- generate a sample dashboard JSON-to-UI mapping or a minimal React demo,
-- or prepare a Docker Compose + production deployment guide.
-
-Tell me which of the above you'd like next and I'll prepare the files.
